@@ -54,6 +54,7 @@ button {
   font-weight: 700;
   letter-spacing: 0.16em;
   color: var(--accent);
+  font-size: 1.95rem;
 }
 
 .nav {
@@ -311,6 +312,21 @@ button {
 
 .contact-list strong {
   color: var(--text);
+}
+
+.contact-list a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--text);
+}
+
+.contact-list .icon {
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+  fill: var(--accent);
+  flex-shrink: 0;
 }
 
 .footer {
