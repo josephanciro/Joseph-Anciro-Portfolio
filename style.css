@@ -262,9 +262,14 @@ button {
   color: var(--text);
 }
 
+
+
+
 .btn-primary:hover,
 .btn-secondary:hover {
   transform: translateY(-1px);
+  animation-name: glow;
+  animation-duration: 1.5s;
 }
 
 .hero-cards {
@@ -387,6 +392,8 @@ button {
 .services-card:hover{
   background: rgba(255,255,255,0.06);
   transform: translateY(-1px);  
+  animation-name: glow;
+  animation-duration: 1.5s;
 }
 
 .services-card h3 {
@@ -409,6 +416,8 @@ button {
 .project-card:hover {
   background: rgba(255,255,255,0.04);
   transform: translateY(-10px);
+  animation-name: glow;
+  animation-duration: 1.5s;
 }
 
 .project-card img {
@@ -486,11 +495,15 @@ button {
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
-  color: var(--text);
+  color: var(--text); 
 }
 
 .contact-list a:hover {
   color: var(--accent);
+  animation-name: glow;
+  animation-duration: 1.5s;
+  border-radius:20px;
+  
 }
 
 .contact-list .icon {
@@ -541,5 +554,17 @@ button {
   .contact-panel,
   .project-card {
     padding: 1.25rem;
+  }
+}
+
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 5px var(--accent);
+  }
+  50% {
+    box-shadow: 0 0 20px var(--accent);
+  }
+  100% {
+    box-shadow: 0 0 5px var(--accent);
   }
 }
