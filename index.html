@@ -12,9 +12,7 @@
 </head>
 <body>
 
-  <main class="container">
-    <!-- Header -->
-    <header class="header">
+  <header class="header">
       <div class="logo"><b>Anciro</b></div>
       <input type="checkbox" id="menu-toggle" class="menu-toggle" />
       <label for="menu-toggle" class="hamburger" aria-label="Toggle navigation">
@@ -28,7 +26,24 @@
         <a href="#projects">Work</a>
         <a href="#contact">Contact</a>
       </nav>
-    </header> 
+      <button class="dark-mode-toggle" id="dark-mode-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+        <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+        <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+      </button>
+    </header>
+  <main class="container">
     
   <br>
     <!-- Hero Section -->
@@ -52,7 +67,7 @@
         
         <div class="card">
           <h3>What I do</h3>
-          <p>Web design, front-end development, portfolio creation, and personal branding for individuals and creatives.</p>
+          <p>Web design, front-end development, back-end development, and personal branding for individuals and creatives.</p>
         </div>
       </div>
     </section>
@@ -188,6 +203,35 @@
     </footer>
 
   </main>
+
+  <script>
+    // Dark mode toggle functionality
+    const darkModeToggle = document.getElementById('dark-mode-toggle');
+    const htmlElement = document.documentElement;
+    
+    // Check if dark mode preference is saved in localStorage
+    const savedDarkMode = localStorage.getItem('darkMode');
+    if (savedDarkMode === 'enabled') {
+      htmlElement.classList.add('dark-mode');
+    } else if (savedDarkMode === null) {
+      // Check system preference if no saved preference
+      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        htmlElement.classList.add('dark-mode');
+      }
+    }
+    
+    // Toggle dark mode on button click
+    darkModeToggle.addEventListener('click', function() {
+      htmlElement.classList.toggle('dark-mode');
+      
+      // Save preference to localStorage
+      if (htmlElement.classList.contains('dark-mode')) {
+        localStorage.setItem('darkMode', 'enabled');
+      } else {
+        localStorage.setItem('darkMode', 'disabled');
+      }
+    });
+  </script>
 
 </body>
 </html>
