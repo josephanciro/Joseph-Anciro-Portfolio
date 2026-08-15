@@ -1,5 +1,16 @@
 /* Base styling */
 :root {
+  --bg: #ffffff;
+  --surface: #f5f5f5;
+  --surface-soft: #efefef;
+  --text: #1a1a1a;
+  --muted: #707070;
+  --accent: #2563eb;
+  --accent-dark: #1e40af;
+  --radius: 24px;
+}
+
+html.dark-mode {
   --bg: #0f172a;
   --surface: #111a38;
   --surface-soft: #17223f;
@@ -7,7 +18,6 @@
   --muted: #94a3b8;
   --accent: #38bdf8;
   --accent-dark: #0ea5e9;
-  --radius: 24px;
 }
 
 * {
@@ -18,8 +28,12 @@ body {
   margin: 0;
   font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   color: var(--text);
-  background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.12), transparent 25%),
-              linear-gradient(180deg, #07101f 0%, #0f172a 45%, #111a38 100%);
+  background: linear-gradient(180deg, #ffffff 0%, #f8f8f8 50%, #f5f5f5 100%);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+html.dark-mode body {
+  background: linear-gradient(180deg, #0f172a 0%, #111a38 50%, #1a2847 100%);
 }
 
 img {
@@ -60,11 +74,16 @@ button {
   padding: 1rem 1rem;
   position: sticky;
   top: 0;
-  background: rgba(7, 16, 31, 0.78);
+  background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(10px);
   z-index: 100;
-  border: 1px solid rgba(148,163,184,0.12);
-  border-radius: var(--radius);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+html.dark-mode .header {
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.12);
 }
 
 .menu-toggle {
@@ -111,6 +130,50 @@ button {
   color: var(--text);
 }
 
+.dark-mode-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text);
+  transition: transform 0.2s ease, color 0.2s ease;
+  border-radius: 8px;
+}
+
+.dark-mode-toggle:hover {
+  transform: scale(1.1);
+}
+
+.dark-mode-toggle svg {
+  width: 20px;
+  height: 20px;
+  color: var(--text);
+  stroke: currentColor;
+}
+
+.dark-mode-toggle .sun-icon {
+  display: block;
+}
+
+.dark-mode-toggle .moon-icon {
+  display: none;
+}
+
+html.dark-mode .dark-mode-toggle .sun-icon {
+  display: none;
+}
+
+html.dark-mode .dark-mode-toggle .moon-icon {
+  display: block;
+}
+
+html.dark-mode .dark-mode-toggle {
+  color: var(--text);
+}
+
 @media (max-width: 768px) {
   .header {
     position: sticky;
@@ -145,7 +208,7 @@ button {
     overflow: hidden;
     opacity: 0;
     background: var(--surface);
-    border: 1px solid rgba(148,163,184,0.12);
+    border: 1px solid rgba(0, 0, 0, 0.08);
     border-radius: var(--radius);
     padding: 0;
     transition: max-height 0.3s ease, opacity 0.2s ease;
@@ -154,7 +217,7 @@ button {
   .nav a {
     display: block;
     padding: 0.9rem 1rem;
-    border-bottom: 1px solid rgba(148,163,184,0.08);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   }
 
   .nav a:last-child {
@@ -213,11 +276,14 @@ button {
 }
 
 .profile-avatar {
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(148,163,184,0.16);
+  background: #f5f5f5;
+  border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 32px;
   overflow: hidden;
   aspect-ratio: 1 / 1;
+  width: 100%;
+  max-width: 360px;
+  margin: 0 auto;
 }
 
 .profile-avatar img {
@@ -258,7 +324,13 @@ button {
 }
 
 .btn-secondary {
-  background: rgba(255,255,255,0.08);
+  background: #f0f0f0;
+  color: var(--text);
+  transition: background 0.3s ease;
+}
+
+html.dark-mode .btn-secondary {
+  background: rgba(23, 34, 63, 0.9);
   color: var(--text);
 }
 
@@ -278,10 +350,16 @@ button {
 }
 
 .card {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(148, 163, 184, 0.15);
+  background: #fafafa;
+  border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: var(--radius);
   padding: 1.5rem;
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+html.dark-mode .card {
+  background: rgba(17, 26, 56, 0.8);
+  border: 1px solid rgba(148, 163, 184, 0.12);
 }
 
 .card h3 {
@@ -346,10 +424,16 @@ button {
 }
 
 .about-image {
-  background: linear-gradient(180deg, rgba(56,189,248,0.12), rgba(15,23,42,0.9));
-  border: 1px solid rgba(148,163,184,0.15);
+  background: linear-gradient(180deg, rgba(37, 99, 235, 0.08), rgba(245, 245, 245, 0.8));
+  border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: var(--radius);
   padding: 1rem;
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+html.dark-mode .about-image {
+  background: linear-gradient(180deg, rgba(56, 189, 248, 0.12), rgba(17, 26, 56, 0.9));
+  border: 1px solid rgba(148, 163, 184, 0.15);
 }
 
 .about-image img {
@@ -361,13 +445,18 @@ button {
 }
 
 .services-card {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(148,163,184,0.12);
+  background: #fafafa;
+  border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: var(--radius);
   padding: 0.75rem;
   text-align: center;
   font-size: 100%;
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
 
+html.dark-mode .services-card {
+  background: rgba(17, 26, 56, 0.8);
+  border: 1px solid rgba(148, 163, 184, 0.12);
 }
 
 @media (max-width: 768px){
@@ -390,15 +479,20 @@ button {
 }
 
 .services-card:hover{
-  background: rgba(255,255,255,0.06);
+  background: #f0f0f0;
   transform: translateY(-1px);  
   animation-name: glow;
   animation-duration: 1.5s;
 }
 
+html.dark-mode .services-card:hover {
+  background: rgba(23, 34, 63, 0.9);
+}
+
 .services-card h3 {
   margin-top: 0;
   color: var(--text);
+  transition: color 0.3s ease;
 }
 
 .projects-grid {
@@ -409,15 +503,25 @@ button {
   position: relative;
   overflow: hidden;
   border-radius: var(--radius);
-  border: 1px solid rgba(148,163,184,0.12);
-  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: #fafafa;
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+html.dark-mode .project-card {
+  background: rgba(17, 26, 56, 0.8);
+  border: 1px solid rgba(148, 163, 184, 0.12);
 }
 
 .project-card:hover {
-  background: rgba(255,255,255,0.04);
+  background: #f0f0f0;
   transform: translateY(-10px);
   animation-name: glow;
   animation-duration: 1.5s;
+}
+
+html.dark-mode .project-card:hover {
+  background: rgba(23, 34, 63, 0.9);
 }
 
 .project-card img {
@@ -463,10 +567,16 @@ button {
 }
 
 .contact-panel {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(148,163,184,0.16);
+  background: #fafafa;
+  border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: var(--radius);
   padding: 2rem;
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+html.dark-mode .contact-panel {
+  background: rgba(17, 26, 56, 0.8);
+  border: 1px solid rgba(148, 163, 184, 0.12);
 }
 
 .contact-panel h3 {
